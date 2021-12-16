@@ -31,6 +31,7 @@ class FormatText : AppCompatActivity() {
                         if (wordMax.length < word.length) {
                             wordMax = word
                         }
+
                     } else {
                         word = ""
                     }
