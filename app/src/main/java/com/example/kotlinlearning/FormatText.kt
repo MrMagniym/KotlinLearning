@@ -26,7 +26,9 @@ class FormatText : AppCompatActivity() {
         buttonChange.setOnClickListener {
             if (textEditQuestion.text.isNotEmpty()) {
                 textViewAnswer.text = textEditQuestion.text.toString().replace('a', 'o', true)
-                textViewAnswer.text = maxWordToUppercase()
+                textViewAnswer.text = splitWordToUppercase()
+//                textViewAnswer.text = maxWordToUppercase()
+
                 textViewAnswer.text = textViewAnswer.text.toString().replace(' ', '_')
             }
         }
@@ -34,6 +36,23 @@ class FormatText : AppCompatActivity() {
         buttonGoBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun splitWordToUppercase(): String {
+        val inputString = textViewAnswer.text.toString()
+        var outputString = ""
+        val list = inputString.split(" ").toList()
+        val maxWord = list.maxByOrNull {
+            it.length
+        }
+        for (word in list) {
+            outputString += if (word == maxWord) {
+                word.uppercase() + " "
+            } else {
+                "$word "
+            }
+        }
+        return outputString
     }
 
     private fun maxWordToUppercase(): String {
